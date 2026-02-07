@@ -1,0 +1,124 @@
+.features {
+  position: relative;
+  min-height: 100vh;
+  background: #050505;
+  display: flex;
+  align-items: center;
+  padding: 120px 0;
+  overflow: hidden;
+}
+
+/* ===== AI MOVING BACKGROUND ===== */
+.ai-bg {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(47,108,255,0.15), transparent 60%);
+  filter: blur(120px);
+  top: 20%;
+  left: 10%;
+  animation: aiMove 12s infinite alternate ease-in-out;
+  z-index: 0;
+}
+
+@keyframes aiMove {
+  from { transform: translate(0,0); }
+  to { transform: translate(120px, -80px); }
+}
+
+.features-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* ===== 3D SECTION FLOAT ===== */
+.features-3d {
+  animation: float3d 6s ease-in-out infinite;
+}
+
+@keyframes float3d {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* ===== CARDS ===== */
+
+.features-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.feature-card {
+  position: relative;
+  background: rgba(255,255,255,0.02);
+  padding: 35px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.06);
+  overflow: hidden;
+  cursor: pointer;
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    background 0.35s ease;
+}
+
+/* Spotlight mouse glow */
+.feature-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+
+  background: radial-gradient(
+    250px circle at var(--x) var(--y),
+    rgba(47,108,255,0.18),
+    transparent 40%
+  );
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: rgba(47,108,255,0.6);
+  background: rgba(47,108,255,0.05);
+
+  box-shadow:
+    0 0 30px rgba(47,108,255,0.25),
+    inset 0 0 20px rgba(47,108,255,0.08);
+}
+
+.feature-card:hover::before {
+  opacity: 1;
+}
+
+.feature-card h3 {
+  color: white;
+  font-size: 1.35rem;
+  margin-bottom: 12px;
+}
+
+.feature-card p {
+  color: #9a9a9a;
+  line-height: 1.6;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .features-container {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+}
