@@ -21,6 +21,8 @@ jobs:
       run: |
         pip install -r requirements.txt
 
-    - name: Run app check
+    - name: Check python syntax
       run: |
-        python -m py_compile app.py
+        python -m py_compile src/preprocessing.py
+        python -m py_compile src/train_mlp.py
+        python -m py_compile src/predict.py
