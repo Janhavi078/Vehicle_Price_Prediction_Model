@@ -40,3 +40,4 @@ This project predicts the selling price of a vehicle using a fully connected neu
 ├── requirements.txt
 └── README.md
 
+This line is added from main branch for conflict demonstration.
