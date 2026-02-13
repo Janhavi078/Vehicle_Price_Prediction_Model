@@ -156,7 +156,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import BackgroundScene from "../components/BackgroundScene";
-import "../styles/predict.css";
+import "../styles/Predict.css";
 
 const carOptions = [
   "ritz","sx4","ciaz","wagon r","swift","vitara brezza",
