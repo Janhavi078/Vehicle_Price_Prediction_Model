@@ -7,7 +7,13 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-MODEL_PATH = os.path.join("model", "car_price_model.pkl")
+# ✅ Get absolute path of backend folder
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# ✅ Correct model path (works on Render + local)
+MODEL_PATH = os.path.join(BASE_DIR, "model", "car_price_model.pkl")
+
+print("Model path:", MODEL_PATH)
 
 try:
     model = joblib.load(MODEL_PATH)
@@ -30,7 +36,6 @@ def predict():
 
         data = request.get_json()
 
-        # read safely
         car_name = data.get("Car_Name")
         year = data.get("Year")
         present_price = data.get("Present_Price")
@@ -40,7 +45,7 @@ def predict():
         transmission = data.get("Transmission")
         owner = data.get("Owner")
 
-        # ✅ validation (NO crash now)
+        # ✅ Validation
         if not all([
             car_name, year, present_price,
             kms_driven, fuel_type,
@@ -60,7 +65,6 @@ def predict():
         }
 
         input_df = pd.DataFrame([input_data])
-
         prediction = model.predict(input_df)
 
         return jsonify({
