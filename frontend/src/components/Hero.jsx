@@ -40,7 +40,7 @@
 //     </section>
 //   );
 // }
-import "../styles/hero.css";
+import "../styles/Hero.css";
 import HeroBackground from "./HeroBackground";
 import { motion } from "framer-motion";
 
